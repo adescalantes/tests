@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trainee.model.Families;
@@ -17,9 +19,13 @@ public class familiesController {
   @Qualifier(value = "families")
   private IFamiliesRepository family;
 
-  @GetMapping(value = "/students")
+  @GetMapping(value = "/families")
   public List<Families> getStudent() {
     return family.findAll();
   }
 
+  @PostMapping(value = "/families")
+  public void insert(@RequestBody Families family) {
+    this.family.save(family);
+  }
 }

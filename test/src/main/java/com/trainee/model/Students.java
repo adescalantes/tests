@@ -1,21 +1,19 @@
 package com.trainee.model;
 
 import java.sql.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "students")
 public class Students {
 
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "student_id")
   private int id;
@@ -37,9 +35,6 @@ public class Students {
 
   @Column(name = "other_student_details")
   private String otherStudentDetails;
-
-  @OneToMany(mappedBy = "student")
-  private List<Student_Parents> student;
 
   public int getId() {
     return id;
@@ -97,11 +92,4 @@ public class Students {
     this.otherStudentDetails = otherStudentDetails;
   }
 
-  public List<Student_Parents> getStudent() {
-    return student;
-  }
-
-  public void setStudent(List<Student_Parents> student) {
-    this.student = student;
-  }
 }
