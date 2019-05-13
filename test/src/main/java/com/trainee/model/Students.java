@@ -38,7 +38,7 @@ public class Students {
   private String otherStudentDetails;
 
   @OneToMany(mappedBy = "student")
-  private List<Students> student;
+  private List<Student_Parents> student;
 
   public int getId() {
     return id;
@@ -96,11 +96,11 @@ public class Students {
     this.otherStudentDetails = otherStudentDetails;
   }
 
-  public List<Students> getStudent() {
+  public List<Student_Parents> getStudent() {
     return student;
   }
 
-  public void setStudent(List<Students> student) {
+  public void setStudent(List<Student_Parents> student) {
     this.student = student;
   }
 }

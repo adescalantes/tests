@@ -32,8 +32,11 @@ public class Parents {
   @Column(name = "other_parent_details")
   private String otherParentDetails;
 
+  @OneToMany(mappedBy = "headOfFamilyParentId")
+  private List<Families> family;
+
   @OneToMany(mappedBy = "parent")
-  private List<Parents> parent;
+  private List<Student_Parents> parent;
 
   public int getId() {
     return id;
@@ -83,11 +86,19 @@ public class Parents {
     this.otherParentDetails = otherParentDetails;
   }
 
-  public List<Parents> getParent() {
+  public List<Student_Parents> getParent() {
     return parent;
   }
 
-  public void setParent(List<Parents> parent) {
+  public void setParent(List<Student_Parents> parent) {
     this.parent = parent;
+  }
+
+  public List<Families> getFamily() {
+    return family;
+  }
+
+  public void setFamily(List<Families> family) {
+    this.family = family;
   }
 }
