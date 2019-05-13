@@ -2,19 +2,18 @@ package com.trainee.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "families")
 public class Families {
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Id
   @Column(name = "family_id")
   private int id;
@@ -27,12 +26,12 @@ public class Families {
     this.id = id;
   }
 
-  public Parents getHeadOfFamilyParentId() {
-    return headOfFamilyParentId;
+  public Parents getParent() {
+    return parent;
   }
 
-  public void setHeadOfFamilyParentId(Parents headOfFamilyParentId) {
-    this.headOfFamilyParentId = headOfFamilyParentId;
+  public void setParent(Parents parent) {
+    this.parent = parent;
   }
 
   public String getFamilyName() {
@@ -43,10 +42,10 @@ public class Families {
     this.familyName = familyName;
   }
 
+  @OneToOne
   @NotNull
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JsonIgnore
-  private Parents headOfFamilyParentId;
+  @JoinColumn(name = "parent_id", referencedColumnName = "parent_id")
+  private Parents parent;
 
   @Column(name = "family_name")
   private String familyName;

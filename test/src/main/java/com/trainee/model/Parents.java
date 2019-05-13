@@ -1,18 +1,16 @@
 package com.trainee.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "parents")
 public class Parents {
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Id
   @Column(name = "parent_id")
   private int id;
@@ -31,12 +29,6 @@ public class Parents {
 
   @Column(name = "other_parent_details")
   private String otherParentDetails;
-
-  @OneToMany(mappedBy = "headOfFamilyParentId")
-  private List<Families> family;
-
-  @OneToMany(mappedBy = "parent")
-  private List<Student_Parents> parent;
 
   public int getId() {
     return id;
@@ -86,19 +78,4 @@ public class Parents {
     this.otherParentDetails = otherParentDetails;
   }
 
-  public List<Student_Parents> getParent() {
-    return parent;
-  }
-
-  public void setParent(List<Student_Parents> parent) {
-    this.parent = parent;
-  }
-
-  public List<Families> getFamily() {
-    return family;
-  }
-
-  public void setFamily(List<Families> family) {
-    this.family = family;
-  }
 }
