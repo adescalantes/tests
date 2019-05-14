@@ -1,7 +1,7 @@
 package com.trainee.model;
 
 import java.sql.Date;
-
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "students")
@@ -39,6 +42,8 @@ public class Students {
   private String otherStudentDetails;
 
 
+  @ManyToMany(mappedBy = "student")
+  private Set<Parents> parent;
   
   public int getId() {
     return id;
@@ -96,6 +101,13 @@ public class Students {
     this.otherStudentDetails = otherStudentDetails;
   }
 
+  public Set<Parents> getParent() {
+	return parent;
+  }
+
+  public void setParent(Set<Parents> parent) {
+	this.parent = parent;
+	}
 
 
 }

@@ -4,6 +4,7 @@ package com.trainee.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Parents {
   @Column(name = "other_parent_details")
   private String otherParentDetails;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "student_parents", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
   private Set<Students> student;
 
@@ -97,20 +98,7 @@ public class Parents {
 	this.student = student;
   }
 
-  public Parents() {
-  }
 
-  public Parents(int id, String gender, String firstName, String middleName, String lastName, String otherParentDetails,
-		Set<Students> student) {
-
-	this.id = id;
-	this.gender = gender;
-	this.firstName = firstName;
-	this.middleName = middleName;
-	this.lastName = lastName;
-	this.otherParentDetails = otherParentDetails;
-	this.student = student;
-  }
 
 
 }
