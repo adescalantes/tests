@@ -89,5 +89,28 @@ public class Parents {
     this.otherParentDetails = otherParentDetails;
   }
 
+  public Set<Students> getStudent() {
+	return student;
+  }
+
+  public void setStudent(Set<Students> student) {
+	this.student = student;
+  }
+
+  public Parents() {
+  }
+
+  public Parents(int id, String gender, String firstName, String middleName, String lastName, String otherParentDetails,
+		Set<Students> student) {
+
+	this.id = id;
+	this.gender = gender;
+	this.firstName = firstName;
+	this.middleName = middleName;
+	this.lastName = lastName;
+	this.otherParentDetails = otherParentDetails;
+	this.student = student;
+  }
+
 
 }

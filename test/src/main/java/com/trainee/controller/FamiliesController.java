@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trainee.model.Families;
+import com.trainee.model.Parents;
 import com.trainee.repository.IFamiliesRepository;
 
 @RestController
-public class familiesController {
+public class FamiliesController {
 
   @Autowired
   @Qualifier(value = "families")
@@ -26,7 +27,6 @@ public class familiesController {
 
   @PostMapping(value = "/families")
   public void insert(@RequestBody Families family) {
-
     this.family.save(family);
   }
 }

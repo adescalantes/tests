@@ -1,5 +1,6 @@
 package com.trainee.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ public class Families {
   @Column(name = "family_id")
   private int id;
   
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @NotNull
   @JoinColumn(name = "parent_id", referencedColumnName = "parent_id")
   private Parents parent;

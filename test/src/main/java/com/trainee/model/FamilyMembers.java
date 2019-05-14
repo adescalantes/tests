@@ -1,5 +1,6 @@
 package com.trainee.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,11 +29,11 @@ public class FamilyMembers {
 	@Column(name="parent_or_studen_member")
 	private String parentOrStudent;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "parent_id", referencedColumnName = "parent_id")
 	private Parents parent;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "student_id", referencedColumnName = "student_id")
 	private Students student;
 
