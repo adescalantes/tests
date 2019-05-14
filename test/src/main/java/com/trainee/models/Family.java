@@ -1,6 +1,5 @@
-package com.trainee.model;
+package com.trainee.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,16 +12,16 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "families")
-public class Families {
+public class Family {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "family_id")
   private int id;
-  
-  @OneToOne(cascade = CascadeType.ALL)
+
+  @OneToOne
   @NotNull
   @JoinColumn(name = "parent_id", referencedColumnName = "parent_id")
-  private Parents parent;
+  private Parent parent;
 
   @Column(name = "family_name")
   private String familyName;
@@ -35,11 +34,11 @@ public class Families {
     this.id = id;
   }
 
-  public Parents getParent() {
+  public Parent getParent() {
     return parent;
   }
 
-  public void setParent(Parents parent) {
+  public void setParent(Parent parent) {
     this.parent = parent;
   }
 
@@ -51,5 +50,13 @@ public class Families {
     this.familyName = familyName;
   }
 
- 
+  public Family(int id, @NotNull Parent parent, String familyName) {
+    this.id = id;
+    this.parent = parent;
+    this.familyName = familyName;
+  }
+
+  public Family() {
+  }
+
 }

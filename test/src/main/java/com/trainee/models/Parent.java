@@ -1,6 +1,4 @@
-package com.trainee.model;
-
-
+package com.trainee.models;
 
 import java.util.Set;
 
@@ -15,15 +13,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "parents")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Parents {
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Parent {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
   @Column(name = "parent_id")
@@ -44,10 +39,10 @@ public class Parents {
   @Column(name = "other_parent_details")
   private String otherParentDetails;
 
-  
+  @JsonIgnore
   @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "student_parents", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
-  private Set<Students> student;
+  @JoinTable(name = "student_parents", joinColumns = @JoinColumn(name = "parent_id", referencedColumnName = "parent_id"), inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"))
+  private Set<Student> student;
 
   public int getId() {
     return id;
@@ -97,15 +92,26 @@ public class Parents {
     this.otherParentDetails = otherParentDetails;
   }
 
-  public Set<Students> getStudent() {
-	return student;
+  public Set<Student> getStudent() {
+    return student;
   }
 
-  public void setStudent(Set<Students> student) {
-	this.student = student;
+  public void setStudent(Set<Student> student) {
+    this.student = student;
   }
 
+  public Parent(int id, String gender, String firstName, String middleName, String lastName, String otherParentDetails,
+      Set<Student> student) {
+    this.id = id;
+    this.gender = gender;
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+    this.otherParentDetails = otherParentDetails;
+    this.student = student;
+  }
 
-
+  public Parent() {
+  }
 
 }

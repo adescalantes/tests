@@ -1,4 +1,4 @@
-package com.trainee.model;
+package com.trainee.models;
 
 import java.sql.Date;
 import java.util.Set;
@@ -8,19 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "students")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Students {
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Student {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
@@ -45,11 +41,10 @@ public class Students {
   @Column(name = "other_student_details")
   private String otherStudentDetails;
 
-
- 
+  @JsonIgnore
   @ManyToMany(mappedBy = "student")
-  private Set<Parents> parent;
-  
+  private Set<Parent> parent;
+
   public int getId() {
     return id;
   }
@@ -106,13 +101,27 @@ public class Students {
     this.otherStudentDetails = otherStudentDetails;
   }
 
-  public Set<Parents> getParent() {
-	return parent;
+  public Set<Parent> getParent() {
+    return parent;
   }
 
-  public void setParent(Set<Parents> parent) {
-	this.parent = parent;
-	}
+  public void setParent(Set<Parent> parent) {
+    this.parent = parent;
+  }
 
+  public Student(int id, String gender, String firstName, String middleName, String lastName, Date dateOfBirth,
+      String otherStudentDetails, Set<Parent> parent) {
+    this.id = id;
+    this.gender = gender;
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
+    this.dateOfBirth = dateOfBirth;
+    this.otherStudentDetails = otherStudentDetails;
+    this.parent = parent;
+  }
+
+  public Student() {
+  }
 
 }
