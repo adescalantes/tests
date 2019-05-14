@@ -1,12 +1,14 @@
 package com.trainee.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +38,8 @@ public class Students {
   @Column(name = "other_student_details")
   private String otherStudentDetails;
 
+
+  
   public int getId() {
     return id;
   }
@@ -91,5 +95,7 @@ public class Students {
   public void setOtherStudentDetails(String otherStudentDetails) {
     this.otherStudentDetails = otherStudentDetails;
   }
+
+
 
 }

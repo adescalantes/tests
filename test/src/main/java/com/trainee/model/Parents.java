@@ -1,5 +1,7 @@
 package com.trainee.model;
 
+
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -86,5 +88,6 @@ public class Parents {
   public void setOtherParentDetails(String otherParentDetails) {
     this.otherParentDetails = otherParentDetails;
   }
+
 
 }

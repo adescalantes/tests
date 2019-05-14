@@ -17,6 +17,14 @@ public class Families {
   @Id
   @Column(name = "family_id")
   private int id;
+  
+  @OneToOne
+  @NotNull
+  @JoinColumn(name = "parent_id", referencedColumnName = "parent_id")
+  private Parents parent;
+
+  @Column(name = "family_name")
+  private String familyName;
 
   public int getId() {
     return id;
@@ -42,11 +50,5 @@ public class Families {
     this.familyName = familyName;
   }
 
-  @OneToOne
-  @NotNull
-  @JoinColumn(name = "parent_id", referencedColumnName = "parent_id")
-  private Parents parent;
-
-  @Column(name = "family_name")
-  private String familyName;
+ 
 }
