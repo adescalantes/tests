@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.trainee.model.Parents;
+import com.trainee.model.Students;
 import com.trainee.repository.IParentsRepository;
 
 @RestController
@@ -21,6 +22,8 @@ public class ParentsController {
   @Qualifier(value = "parents")
   private IParentsRepository parent;
 
+
+  
   @GetMapping(value = "/parents")
   public List<Parents> getParents() {
     return parent.findAll();
@@ -28,7 +31,6 @@ public class ParentsController {
 
   @PostMapping(value = "/parents")
   public void create(@RequestBody Parents parents) {
-	 
     parent.save(parents);
   }
   

@@ -15,8 +15,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "parents")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Parents {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
@@ -38,6 +44,7 @@ public class Parents {
   @Column(name = "other_parent_details")
   private String otherParentDetails;
 
+  
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "student_parents", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
   private Set<Students> student;

@@ -23,7 +23,7 @@ public class FamiliesController {
 
   
   @GetMapping(value = "/families")
-  public List<Families> getStudent(Model model) {
+  public List<Families> getStudent() {
     return family.findAll();
   }
 
