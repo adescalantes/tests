@@ -1,10 +1,15 @@
 package com.trainee.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +34,10 @@ public class Parents {
 
   @Column(name = "other_parent_details")
   private String otherParentDetails;
+
+  @ManyToMany
+  @JoinTable(name = "student_parents", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+  private Set<Students> student;
 
   public int getId() {
     return id;
